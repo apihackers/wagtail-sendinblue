@@ -1,0 +1,32 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailadmin_tags i18n staticfiles gravatar sendinblue %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'sendinblue/css/admin.css' %}">
+{% endblock %}
+
+{% block titletag %}SendInBlue{% endblock %}
+
+{% block content %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% include 'wagtailadmin/shared/header.html' with title='SendInBlue' icon='fa-envelope' %}
+
+    <section class="nice-padding sendinblue">
+        <div class="card full-width">
+            <div class="content">
+                <h4 class="header">
+                    <i class="icon icon-fa-envelope"></i>
+                    {% trans 'Welcome' %}
+                </h2>
+            </div>
+            <div class="content">
+                <p>{% trans 'You have not yet configured your SendInBlue account' %}</p>
+            </div>
+            <a class="button bicolor icon icon-fa-cogs"
+                href="{% url 'wagtailsettings:edit' 'sendinblue' 'SendinBlueSettings' %}">
+                {% trans 'Go to the SendInBlue settings' %}
+            </a>
+        </div>
+    </section>
+{% endblock %}

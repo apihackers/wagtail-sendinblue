@@ -1,0 +1,22 @@
+{% load i18n sendinblue %}
+<div class="card">
+    <div class="content">
+        <h4 class="header">
+            <i class="icon icon-{{ campaign.icon }}"></i>
+            {{ campaign.name }}
+        </h2>
+    </div>
+    <ul class="content countlist">
+        {% for status, label, icon in campaign_status %}
+        <li>
+            <i class="icon icon-fa-{{icon}}"></i>
+            {{ label }}
+            <span class="count">{{ campaign.stats|get_item:status }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+    <a class="button bicolor icon icon-fa-plus" target="_blank"
+        href="https://my.sendinblue.com/camp/step1/type/{{campaign_id}}/?utm_source=wagtail&utm_medium=plugin&utm_campaign=module_link">
+        {% trans 'See in SendInBlue' %}
+    </a>
+</div>

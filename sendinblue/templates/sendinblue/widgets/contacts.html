@@ -1,0 +1,26 @@
+{% load i18n %}
+<div class="card">
+    <div class="content">
+        <h4 class="header">
+            <i class="icon icon-group"></i>
+            {% trans 'Contacts' %}
+        </h2>
+    </div>
+    <div class="content">
+        <p>
+            {% if total_contacts %}
+                {% blocktrans trimmed count total_contacts=total_contacts %}
+                You have {{ total_contacts }} contacts.
+                {% plural %}
+                You have {{ total_contacts }} contacts.
+                {% endblocktrans %}
+            {% else %}
+                {% trans "You don't have any contact yet." %}
+            {% endif %}
+        </p>
+    </div>
+    <a class="button bicolor icon icon-fa-group" target="_blank"
+        href="https://my.sendinblue.com/users/list/?utm_source=wagtail&utm_medium=plugin&utm_campaign=module_link">
+        {% trans 'All contacts' %}
+    </a>
+</div>

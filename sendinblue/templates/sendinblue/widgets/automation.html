@@ -1,0 +1,37 @@
+{% load i18n %}
+<div class="card">
+    <div class="content">
+        <h4 class="header">
+            <i class="icon icon-fa-cogs"></i>
+            {% trans 'Automation' %}
+        </h2>
+    </div>
+    <div class="content">
+        {% if settings.sendinblue.SendinBlueSettings.automation %}
+        <p>
+            {% if automation_scenarios %}
+                {% blocktrans trimmed count automation_scenarios=automation_scenarios %}
+                You have {{ automation_scenarios }} scenario.
+                {% plural %}
+                You have {{ automation_scenarios }} scenarios.
+                {% endblocktrans %}
+            {% else %}
+                {% trans "You don't have any scenario yet." %}
+            {% endif %}
+        </p>
+        {% else %}
+        <p>{% trans 'You have not configured automation on you account' %}</p>
+        {% endif %}
+    </div>
+    {% if settings.sendinblue.SendinBlueSettings.automation %}
+    <a class="button bicolor icon icon-fa-angle-right" target="_blank"
+        href="https://automation.sendinblue.com/?utm_source=wagtail&utm_medium=plugin&utm_campaign=module_link">
+        {% trans 'Open Automation module' %}
+    </a>
+    {% else %}
+    <a class="button bicolor icon icon-fa-cogs"
+        href="{% url 'wagtailsettings:edit' 'sendinblue' 'SendinBlueSettings' %}">
+        {% trans 'Go to the SendInBlue settings' %}
+    </a>
+    {% endif %}
+</div>

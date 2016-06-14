@@ -1,0 +1,63 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailadmin_tags i18n staticfiles gravatar sendinblue %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'sendinblue/css/admin.css' %}">
+{% endblock %}
+
+{% block titletag %}SendInBlue{% endblock %}
+
+{% block content %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% include 'wagtailadmin/shared/header.html' with title='SendInBlue' icon='fa-envelope' merged=True %}
+    <ul class="tab-nav merged">
+        <li class="active"><a href="#dashboard">{% trans 'Dashboard' %}</a></li>
+        <li><a href="#lists">{% trans 'Lists' %}</a></li>
+        <li><a href="#campaigns">{% trans 'Campaigns' %}</a></li>
+        <li><a href="#statistics">{% trans 'Statistics' %}</a></li>
+    </ul>
+
+    <div class="tab-content">
+        {# Dashboard #}
+        <section id="dashboard" class="nice-padding active sendinblue">
+            <div class="row row-flush">
+                <div class="col4">
+                    {% include 'sendinblue/widgets/account.html' %}
+                </div>
+                <div class="col4">
+                    {% include 'sendinblue/widgets/contacts.html' %}
+                </div>
+                <div class="col4">
+                    {% include 'sendinblue/widgets/automation.html' %}
+                </div>
+            </div>
+
+            <div class="row row-flush">
+                {% for campaign_id in campaigns_order %}
+                {% with campaigns|get_item:campaign_id as campaign %}
+                <div class="col4">
+                    {% include 'sendinblue/widgets/campaign.html' %}
+                </div>
+                {% endwith %}
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="lists" class="iframe">
+            <iframe src="https://my.sendinblue.com/lists/index/access_token/{{access_token}}/lang/{{LANGUAGE_CODE}}"
+                width="100%" height="750" scrolling="yes"></iframe>
+        </section>
+
+        <section id="campaigns" class="iframe">
+            <iframe src="https://my.sendinblue.com/camp/listing/access_token/{{access_token}}/lang/{{LANGUAGE_CODE}}"
+                width="100%" height="750" scrolling="yes"></iframe>
+        </section>
+
+        <section id="statistics" class="iframe">
+            <iframe src="https://my.sendinblue.com/camp/message/access_token/{{access_token}}/lang/{{LANGUAGE_CODE}}"
+                width="100%" height="750" scrolling="yes"></iframe>
+        </section>
+
+    </div>
+{% endblock %}

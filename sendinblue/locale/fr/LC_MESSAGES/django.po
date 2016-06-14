@@ -1,0 +1,159 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-16 13:16+0200\n"
+"PO-Revision-Date: 2016-06-16 13:17+0200\n"
+"Last-Translator: Axel Haustant <noirbizarre@gmail.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#: sendinblue/models.py:9
+#, python-format
+msgid ""
+"You can retrieve your SendInBlue API Key <a target=\"_blank\" href=\"%s"
+"\">here</a>"
+msgstr ""
+"Vous pouvez retrouver votre clé d'API SendInBlue <a target=\"_blank\" href="
+"\"%s\">ici</a>"
+
+#: sendinblue/models.py:11
+#, python-format
+msgid ""
+"You can retrieve your SendInBlue Automation API Key <a target=\"_blank\" "
+"href=\"%s\">here</a>"
+msgstr ""
+"Vous pouvez retrouver votre clé d'API Automation SendInBlue <a target="
+"\"_blank\" href=\"%s\">ici</a>"
+
+#: sendinblue/models.py:20
+msgid "API Key"
+msgstr "Clé d'API"
+
+#: sendinblue/models.py:23
+msgid "Automation API Key"
+msgstr "Clé d'API Automation"
+
+#: sendinblue/templates/sendinblue/admin-welcome.html:20
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: sendinblue/templates/sendinblue/admin-welcome.html:24
+msgid "You have not yet configured your SendInBlue account"
+msgstr "Vous n'avez pas encore configuré SendInBlue sur votre compte"
+
+#: sendinblue/templates/sendinblue/admin-welcome.html:28
+#: sendinblue/templates/sendinblue/widgets/automation.html:34
+msgid "Go to the SendInBlue settings"
+msgstr "Aller aux réglages SendInBlue"
+
+#: sendinblue/templates/sendinblue/admin.html:15
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: sendinblue/templates/sendinblue/admin.html:16
+msgid "Lists"
+msgstr "Listes"
+
+#: sendinblue/templates/sendinblue/admin.html:17
+msgid "Campaigns"
+msgstr "Campagnes"
+
+#: sendinblue/templates/sendinblue/admin.html:18
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: sendinblue/templates/sendinblue/widgets/account.html:6
+msgid "Account"
+msgstr "Compte"
+
+#: sendinblue/templates/sendinblue/widgets/account.html:10
+msgid "You are currently logged as:"
+msgstr "Vous actuellement connecté en tant que:"
+
+#: sendinblue/templates/sendinblue/widgets/account.html:18
+msgid "My Account"
+msgstr "Mon compte"
+
+#: sendinblue/templates/sendinblue/widgets/automation.html:6
+msgid "Automation"
+msgstr "Automation"
+
+#: sendinblue/templates/sendinblue/widgets/automation.html:13
+#, python-format
+msgid "You have %(automation_scenarios)s scenario."
+msgid_plural "You have %(automation_scenarios)s scenarios."
+msgstr[0] "Vous avez %(automation_scenarios)s scénario."
+msgstr[1] "Vous avez %(automation_scenarios)s scénarios."
+
+#: sendinblue/templates/sendinblue/widgets/automation.html:19
+msgid "You don't have any scenario yet."
+msgstr "Vous n'avez pas encore de scénario"
+
+#: sendinblue/templates/sendinblue/widgets/automation.html:23
+msgid "You have not configured automation on you account"
+msgstr "Vous n'avez pas configuré l'Automation sur votre compte"
+
+#: sendinblue/templates/sendinblue/widgets/automation.html:29
+msgid "Open Automation module"
+msgstr "Ouvrir le module Automation"
+
+#: sendinblue/templates/sendinblue/widgets/campaign.html:20
+msgid "See in SendInBlue"
+msgstr "Voir dans SendInBlue"
+
+#: sendinblue/templates/sendinblue/widgets/contacts.html:6
+msgid "Contacts"
+msgstr "Contacts"
+
+#: sendinblue/templates/sendinblue/widgets/contacts.html:12
+#, python-format
+msgid "You have %(total_contacts)s contacts."
+msgid_plural "You have %(total_contacts)s contacts."
+msgstr[0] "Vous avez %(total_contacts)s contact."
+msgstr[1] "Vous avez %(total_contacts)s contacts."
+
+#: sendinblue/templates/sendinblue/widgets/contacts.html:18
+msgid "You don't have any contact yet."
+msgstr "Vous n'avez pas encore de contacts."
+
+#: sendinblue/templates/sendinblue/widgets/contacts.html:24
+msgid "All contacts"
+msgstr "Tous les contacts"
+
+#: sendinblue/views.py:11
+msgid "Sent"
+msgstr "Envoyé"
+
+#: sendinblue/views.py:12
+msgid "Draft"
+msgstr "Brouillon"
+
+#: sendinblue/views.py:13
+msgid "Queued"
+msgstr "En attente"
+
+#: sendinblue/views.py:57
+msgid "Email campaigns"
+msgstr "Campagnes d'email"
+
+#: sendinblue/views.py:62
+msgid "SMS campaigns"
+msgstr "Campagnes SMS"
+
+#: sendinblue/views.py:67
+msgid "Trigger marketing"
+msgstr "Trigger marketing"
+
+#~ msgid "You SendInBlue API Key"
+#~ msgstr "Votre clé d'API SendInBlue"
