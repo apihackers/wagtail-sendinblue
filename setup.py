@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # flake8: noqa
-from __future__ import unicode_literals
 
 import re
 import sys
@@ -86,7 +85,7 @@ setup(
     version=__version__,
     description=__description__,
     long_description=long_description,
-    # url='https://github.com/apihackers/wagtail-sendinblue',
+    url='https://github.com/apihackers/wagtail-sendinblue',
     author='API Hackers',
     author_email='wagtail-sendinblue@apihackers.com',
     packages=find_packages(),

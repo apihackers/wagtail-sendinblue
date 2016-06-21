@@ -9,7 +9,7 @@ from django.utils.safestring import mark_safe
 
 @jinja2.contextfunction
 def sendinblue(context):
-    data = render_to_string('sendinblue/js.html', context)
+    data = render_to_string('sendinblue/template_tag.html', context)
     return mark_safe(data)
 
 
