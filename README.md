@@ -51,7 +51,7 @@ You need to add the following at the end of your base Django template:
 </html>
 ```
 
-or if using [django-jinja](http://niwinz.github.io/django-jinja/):
+or if using [django-jinja](http://niwinz.github.io/django-jinja/latest/):
 
 ```html+jinja
   {{ sendinblue() }}
