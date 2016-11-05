@@ -1,5 +1,5 @@
 {% extends "wagtailadmin/base.html" %}
-{% load wagtailadmin_tags i18n staticfiles gravatar sendinblue %}
+{% load wagtailadmin_tags i18n staticfiles sendinblue %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -22,11 +22,18 @@
             </div>
             <div class="content">
                 <p>{% trans 'You have not yet configured your SendInBlue account' %}</p>
+                <p>{% blocktrans with atag=sendinblue_link|safe %}If you haven't done so yet, you must create an account on {{ atag }}.{% endblocktrans %}</p>
+                <div class="">
+                    <a class="button bicolor icon icon-cogs"
+                        href="{% url 'wagtailsettings:edit' 'sendinblue' 'SendinBlueSettings' %}">
+                        {% trans 'Go to the SendInBlue settings' %}
+                    </a>
+                    <a class="button bicolor icon icon-plus"
+                        href="{{ sendinblue_url }}" target="_blank">
+                        {% trans 'Create a SendInBlue account' %}
+                    </a>
+                </div>
             </div>
-            <a class="button bicolor icon icon-fa-cogs"
-                href="{% url 'wagtailsettings:edit' 'sendinblue' 'SendinBlueSettings' %}">
-                {% trans 'Go to the SendInBlue settings' %}
-            </a>
         </div>
     </section>
 {% endblock %}

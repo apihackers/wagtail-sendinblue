@@ -19,8 +19,7 @@
             {% endif %}
         </p>
     </div>
-    <a class="button bicolor icon icon-fa-group" target="_blank"
-        href="https://my.sendinblue.com/users/list/?utm_source=wagtail&utm_medium=plugin&utm_campaign=module_link">
+    <a class="button bicolor icon icon-fa-group" href="{% url 'sendinblue:contacts' %}">
         {% trans 'All contacts' %}
     </a>
 </div>

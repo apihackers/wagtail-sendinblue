@@ -24,8 +24,7 @@
         {% endif %}
     </div>
     {% if settings.sendinblue.SendinBlueSettings.automation %}
-    <a class="button bicolor icon icon-fa-angle-right" target="_blank"
-        href="https://automation.sendinblue.com/?utm_source=wagtail&utm_medium=plugin&utm_campaign=module_link">
+    <a class="button bicolor icon icon-fa-angle-right" href="{% url 'sendinblue:automation' %}">
         {% trans 'Open Automation module' %}
     </a>
     {% else %}

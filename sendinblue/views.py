@@ -1,10 +1,13 @@
-from django.shortcuts import render
-from django.utils.translation import ugettext_lazy as _
-
 from collections import defaultdict
 
-from .client import Client
-from .models import SendinBlueSettings
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.vary import vary_on_headers
+
+from .client import Client, AutomationClient
+from .forms import SendInBlueDynamicForm
+from .models import SendinBlueSettings, SendInBlueForm
 
 
 CAMPAIGN_STATUS = (
@@ -13,11 +16,23 @@ CAMPAIGN_STATUS = (
     ('Queued', _('Queued'), 'clock-o')
 )
 
+SENDINBLUE_URL = 'https://www.sendinblue.com/?ae=312'
+SENDINBLUE_LINK = '<a href="{0}" title="SendInBlue" target="_blank">SendInBlue</a>'.format(SENDINBLUE_URL)
+
+
+def welcome(request):
+    '''Render the welcome screen'''
+    return render(request, 'sendinblue/admin-welcome.html', {
+        'sendinblue_url': SENDINBLUE_URL,
+        'sendinblue_link': SENDINBLUE_LINK,
+    })
+
 
 def dashboard(request):
+    '''Display the admin dahsboard view'''
     settings = SendinBlueSettings.for_site(request.site)
     if not settings.apikey:
-        return render(request, 'sendinblue/admin-welcome.html')
+        return welcome(request)
 
     api = Client(settings.apikey)
 
@@ -35,18 +50,41 @@ def dashboard(request):
     else:
         total_contacts = 0
 
-    data = api.get_access_tokens()
-    access_token = data['data']['access_token']
-
     return render(request, 'sendinblue/admin.html', {
+        'title': 'SendInBlue - {0}'.format(_('Dashboard')),
         'infos': infos,
         'plans': plans,
         'total_contacts': total_contacts,
         'campaigns': get_campaign_stats(api),
         'campaigns_order': ('classic', 'sms', 'trigger'),
         'campaign_status': CAMPAIGN_STATUS,
-        'access_token': access_token,
     })
+
+
+def iframe_factory(name, title):
+    def view(request):
+        settings = SendinBlueSettings.for_site(request.site)
+        if not settings.apikey:
+            return welcome(request)
+
+        api = Client(settings.apikey)
+
+        data = api.get_access_tokens()
+        access_token = data['data']['access_token']
+
+        ctx = {
+            # 'name': name,
+            'title': title,
+            'access_token': access_token,
+        }
+        if name.startswith('http'):
+            ctx.update(url=name)
+        else:
+            ctx.update(name=name)
+
+        return render(request, 'sendinblue/admin-iframe.html', ctx)
+
+    return view
 
 
 def get_campaign_stats(api):
@@ -77,3 +115,36 @@ def get_campaign_stats(api):
         data[campaign['type']]['stats'][campaign['status']] += 1
 
     return data
+
+
+@vary_on_headers('HTTP_X_REQUESTED_WITH')
+def submit_form(request, pk):
+    sib_form = SendInBlueForm.objects.get(pk=int(pk))
+    if request.method == 'POST':
+        form = SendInBlueDynamicForm(request.POST, builder=sib_form.definition)
+        if form.is_valid():
+            data = dict(**form.cleaned_data)
+            email = data.pop('EMAIL')
+            settings = SendinBlueSettings.for_site(request.site)
+            api = Client(settings.apikey)
+
+            api.create_update_user(email, data, listid=sib_form.target_list)
+
+            if settings.automation:
+                session_id = request.session.session_key
+                data['session_id'] = session_id
+                automation = AutomationClient(settings.automation)
+                if settings.track_users or sib_form.send_event:
+                    automation.identify(email, **data)
+                if sib_form.send_event:
+                    automation.track(sib_form.send_event, session_id=session_id, email_id=email)
+
+            if request.is_ajax():
+                return JsonResponse({
+                    'title': sib_form.thankyou_title,
+                    'text': sib_form.thankyou_text,
+                })
+            else:
+                return render(request, 'sendinblue/thankyou.html', {
+                    'form': sib_form,
+                })

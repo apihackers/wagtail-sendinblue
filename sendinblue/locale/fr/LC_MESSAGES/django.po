@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-16 13:16+0200\n"
-"PO-Revision-Date: 2016-06-16 13:17+0200\n"
+"POT-Creation-Date: 2016-11-05 13:05+0100\n"
+"PO-Revision-Date: 2016-11-05 13:06+0100\n"
 "Last-Translator: Axel Haustant <noirbizarre@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -16,9 +16,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.11\n"
 
-#: sendinblue/models.py:9
+#: forms.py:16
+msgid "Attributes"
+msgstr "Attributs"
+
+#: forms.py:36
+msgid "Label"
+msgstr "Libellé"
+
+#: forms.py:37
+msgid "The text displayed aside the field"
+msgstr "Le texte affiché à côté du champ"
+
+#: forms.py:38
+msgid "Required"
+msgstr "Requis"
+
+#: forms.py:41
+msgid "Placeholder"
+msgstr "Emplacement"
+
+#: forms.py:42
+msgid "The text displayed inside the field when empty"
+msgstr "Le texte afficher dans le champ lorsqu'il est vide"
+
+#: forms.py:45
+msgid "SendInBlue field"
+msgstr "Champ SendInBlue"
+
+#: models.py:24
 #, python-format
 msgid ""
 "You can retrieve your SendInBlue API Key <a target=\"_blank\" href=\"%s"
@@ -27,7 +55,7 @@ msgstr ""
 "Vous pouvez retrouver votre clé d'API SendInBlue <a target=\"_blank\" href="
 "\"%s\">ici</a>"
 
-#: sendinblue/models.py:11
+#: models.py:26
 #, python-format
 msgid ""
 "You can retrieve your SendInBlue Automation API Key <a target=\"_blank\" "
@@ -36,124 +64,319 @@ msgstr ""
 "Vous pouvez retrouver votre clé d'API Automation SendInBlue <a target="
 "\"_blank\" href=\"%s\">ici</a>"
 
-#: sendinblue/models.py:20
+#: models.py:37
 msgid "API Key"
 msgstr "Clé d'API"
 
-#: sendinblue/models.py:23
+#: models.py:40
 msgid "Automation API Key"
 msgstr "Clé d'API Automation"
 
-#: sendinblue/templates/sendinblue/admin-welcome.html:20
-msgid "Welcome"
-msgstr "Bienvenue"
+#: models.py:43
+msgid "Enable user tracking"
+msgstr "Activer le suivi des utilisateurs"
 
-#: sendinblue/templates/sendinblue/admin-welcome.html:24
-msgid "You have not yet configured your SendInBlue account"
-msgstr "Vous n'avez pas encore configuré SendInBlue sur votre compte"
+#: models.py:44
+msgid "Identify users to SendInBlue to provide deeper automation"
+msgstr ""
+"Identifier les utilisateurs auprès de SendInBlue pour fournir des capacités "
+"d'automatisation plus avancées"
 
-#: sendinblue/templates/sendinblue/admin-welcome.html:28
-#: sendinblue/templates/sendinblue/widgets/automation.html:34
-msgid "Go to the SendInBlue settings"
-msgstr "Aller aux réglages SendInBlue"
-
-#: sendinblue/templates/sendinblue/admin.html:15
-msgid "Dashboard"
-msgstr "Tableau de bord"
-
-#: sendinblue/templates/sendinblue/admin.html:16
-msgid "Lists"
-msgstr "Listes"
-
-#: sendinblue/templates/sendinblue/admin.html:17
-msgid "Campaigns"
-msgstr "Campagnes"
-
-#: sendinblue/templates/sendinblue/admin.html:18
-msgid "Statistics"
-msgstr "Statistiques"
-
-#: sendinblue/templates/sendinblue/widgets/account.html:6
-msgid "Account"
-msgstr "Compte"
-
-#: sendinblue/templates/sendinblue/widgets/account.html:10
-msgid "You are currently logged as:"
-msgstr "Vous actuellement connecté en tant que:"
-
-#: sendinblue/templates/sendinblue/widgets/account.html:18
-msgid "My Account"
-msgstr "Mon compte"
-
-#: sendinblue/templates/sendinblue/widgets/automation.html:6
+#: models.py:51 templates/sendinblue/widgets/automation.html:6
+#: wagtail_hooks.py:25 wagtail_hooks.py:68
 msgid "Automation"
 msgstr "Automation"
 
-#: sendinblue/templates/sendinblue/widgets/automation.html:13
+#: models.py:58 models.py:63
+msgid "Default"
+msgstr "Défaut"
+
+#: models.py:59
+msgid "Centered"
+msgstr "Centré"
+
+#: models.py:60
+msgid "Full width"
+msgstr "Pleine largeur"
+
+#: models.py:64
+msgid "Primary"
+msgstr "Primaire"
+
+#: models.py:65
+msgid "Success"
+msgstr "Succès"
+
+#: models.py:66
+msgid "Info"
+msgstr "Info"
+
+#: models.py:67
+msgid "Warning"
+msgstr "Avertissement"
+
+#: models.py:68
+msgid "Danger"
+msgstr "Danger"
+
+#: models.py:69
+msgid "Link"
+msgstr "Lien"
+
+#: models.py:74
+msgid "Name"
+msgstr "Nom"
+
+#: models.py:76
+msgid "Button text"
+msgstr "Texte du bouton"
+
+#: models.py:77
+msgid "Submit"
+msgstr "Soumettre"
+
+#: models.py:78
+msgid "The submit button text"
+msgstr "Le texte du bouton de soumission"
+
+#: models.py:79
+msgid "Button layout"
+msgstr "Forme du bouton"
+
+#: models.py:81
+msgid "The submit button layout"
+msgstr "Le forme du bouton de soumission"
+
+#: models.py:82
+msgid "Button variant"
+msgstr "Variante du bouton"
+
+#: models.py:84
+msgid "The submit button tint"
+msgstr "La teinte de bouton de soumission"
+
+#: models.py:85
+msgid "Target list"
+msgstr "Liste cible"
+
+#: models.py:86
+msgid "Add the contact to the given list on form submission"
+msgstr "Ajouter le contact à cette liste à la soumission du formulaire"
+
+#: models.py:87
+msgid "Send event"
+msgstr "Envoyer un événement"
+
+#: models.py:88
+msgid "Send a custom event on form submission (requires automation)"
+msgstr ""
+"Envoyer un événement personnalisé à la soumission du formulaire (requiert "
+"l'Automation)"
+
+#: models.py:89
+msgid "Introduction title"
+msgstr "Titre de l'introduction"
+
+#: models.py:90
+msgid "Title to use for the introduction"
+msgstr "Le titre à utiliser pour l'introduction"
+
+#: models.py:91
+msgid "Introduction subtitle"
+msgstr "Sous-titre de l'introduction"
+
+#: models.py:92
+msgid "A subtitle to use for the introduction"
+msgstr "Un sous-titre à utiliser pour l'introduction"
+
+#: models.py:93
+msgid "Introduction text"
+msgstr "Texte d'introduction"
+
+#: models.py:94
+msgid "The text to use for the introduction"
+msgstr "Le texte à utiliser pour l'introduction"
+
+#: models.py:95
+msgid "Thank you title"
+msgstr "Titre des remerciements"
+
+#: models.py:95
+msgid "Thank you"
+msgstr "Remerciements"
+
+#: models.py:96
+msgid "Title text to use for the \"thank you\" page"
+msgstr "Le titre de la page de remerciements"
+
+#: models.py:97
+msgid "Thank you text"
+msgstr "Texte de remerciement"
+
+#: models.py:98
+msgid "The text to use for the \"thank you\" page"
+msgstr "Le texte à utiliser pour les remerciements"
+
+#: models.py:107
+msgid "Submit button"
+msgstr "Bouton de soumission"
+
+#: models.py:111
+msgid "On submit"
+msgstr "À la soumissions"
+
+#: models.py:116
+msgid "Introduction"
+msgstr "Introduction"
+
+#: models.py:120
+msgid "Thank you page"
+msgstr "Page de remerciement"
+
+#: models.py:127
+msgid "SendInBlue Form"
+msgstr "Formulaire SendInBlue"
+
+#: models.py:128
+msgid "SendInBlue Forms"
+msgstr "Formulaires SendInBlue"
+
+#: models.py:136
+msgid "SendInBlue form"
+msgstr "Formulaire SendInBlue"
+
+#: templates/sendinblue/admin-welcome.html:20
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: templates/sendinblue/admin-welcome.html:24
+msgid "You have not yet configured your SendInBlue account"
+msgstr "Vous n'avez pas encore configuré SendInBlue sur votre compte"
+
+#: templates/sendinblue/admin-welcome.html:25
+#, python-format
+msgid "If you haven't done so yet, you must create an account on %(atag)s."
+msgstr ""
+"Si vous ne l'avez pas déjà fait, vous devez créer un compte sur %(atag)s."
+
+#: templates/sendinblue/admin-welcome.html:29
+#: templates/sendinblue/widgets/automation.html:33
+msgid "Go to the SendInBlue settings"
+msgstr "Aller aux réglages SendInBlue"
+
+#: templates/sendinblue/admin-welcome.html:33
+msgid "Create a SendInBlue account"
+msgstr "Créer un compte SendInBlue"
+
+#: templates/sendinblue/widgets/account.html:6
+msgid "Account"
+msgstr "Compte"
+
+#: templates/sendinblue/widgets/account.html:10
+msgid "You are currently logged as:"
+msgstr "Vous actuellement connecté en tant que:"
+
+#: templates/sendinblue/widgets/account.html:18
+msgid "My Account"
+msgstr "Mon compte"
+
+#: templates/sendinblue/widgets/automation.html:13
 #, python-format
 msgid "You have %(automation_scenarios)s scenario."
 msgid_plural "You have %(automation_scenarios)s scenarios."
 msgstr[0] "Vous avez %(automation_scenarios)s scénario."
 msgstr[1] "Vous avez %(automation_scenarios)s scénarios."
 
-#: sendinblue/templates/sendinblue/widgets/automation.html:19
+#: templates/sendinblue/widgets/automation.html:19
 msgid "You don't have any scenario yet."
 msgstr "Vous n'avez pas encore de scénario"
 
-#: sendinblue/templates/sendinblue/widgets/automation.html:23
+#: templates/sendinblue/widgets/automation.html:23
 msgid "You have not configured automation on you account"
 msgstr "Vous n'avez pas configuré l'Automation sur votre compte"
 
-#: sendinblue/templates/sendinblue/widgets/automation.html:29
+#: templates/sendinblue/widgets/automation.html:28
 msgid "Open Automation module"
 msgstr "Ouvrir le module Automation"
 
-#: sendinblue/templates/sendinblue/widgets/campaign.html:20
+#: templates/sendinblue/widgets/campaign.html:20
 msgid "See in SendInBlue"
 msgstr "Voir dans SendInBlue"
 
-#: sendinblue/templates/sendinblue/widgets/contacts.html:6
+#: templates/sendinblue/widgets/contacts.html:6 wagtail_hooks.py:22
+#: wagtail_hooks.py:65
 msgid "Contacts"
 msgstr "Contacts"
 
-#: sendinblue/templates/sendinblue/widgets/contacts.html:12
+#: templates/sendinblue/widgets/contacts.html:12
 #, python-format
 msgid "You have %(total_contacts)s contacts."
 msgid_plural "You have %(total_contacts)s contacts."
 msgstr[0] "Vous avez %(total_contacts)s contact."
 msgstr[1] "Vous avez %(total_contacts)s contacts."
 
-#: sendinblue/templates/sendinblue/widgets/contacts.html:18
+#: templates/sendinblue/widgets/contacts.html:18
 msgid "You don't have any contact yet."
 msgstr "Vous n'avez pas encore de contacts."
 
-#: sendinblue/templates/sendinblue/widgets/contacts.html:24
+#: templates/sendinblue/widgets/contacts.html:23
 msgid "All contacts"
 msgstr "Tous les contacts"
 
-#: sendinblue/views.py:11
+#: views.py:14
 msgid "Sent"
 msgstr "Envoyé"
 
-#: sendinblue/views.py:12
+#: views.py:15
 msgid "Draft"
 msgstr "Brouillon"
 
-#: sendinblue/views.py:13
+#: views.py:16
 msgid "Queued"
 msgstr "En attente"
 
-#: sendinblue/views.py:57
+#: views.py:54 wagtail_hooks.py:63
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: views.py:95
 msgid "Email campaigns"
 msgstr "Campagnes d'email"
 
-#: sendinblue/views.py:62
+#: views.py:100
 msgid "SMS campaigns"
 msgstr "Campagnes SMS"
 
-#: sendinblue/views.py:67
+#: views.py:105
 msgid "Trigger marketing"
 msgstr "Trigger marketing"
+
+#: wagtail_hooks.py:21 wagtail_hooks.py:64
+msgid "Lists"
+msgstr "Listes"
+
+#: wagtail_hooks.py:23 wagtail_hooks.py:66
+msgid "Campaigns"
+msgstr "Campagnes"
+
+#: wagtail_hooks.py:24 wagtail_hooks.py:67
+msgid "Templates"
+msgstr "Gabarits"
+
+#: wagtail_hooks.py:26 wagtail_hooks.py:74
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: wagtail_hooks.py:27 wagtail_hooks.py:75
+msgid "Settings"
+msgstr "Paramètres"
+
+#: wagtail_hooks.py:35
+msgid "Forms"
+msgstr "Formulaires"
+
+#~ msgid "name"
+#~ msgstr "nom"
 
 #~ msgid "You SendInBlue API Key"
 #~ msgstr "Votre clé d'API SendInBlue"

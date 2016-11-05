@@ -1,0 +1,10 @@
+<div class="form-group">
+    {% if field.label %}
+    <label for="{{field.attribute}}" {% if field.required %}class="required"{% endif %}>
+        {{field.label}}
+    </label>
+    {% endif %}
+    <input type="{% if field.attribute == 'EMAIL'%}email{% else %}text{% endif %}" class="form-control input-lg"
+        name="{{field.attribute}}" placeholder="{{field.placeholder|default:field.label}}"
+        {% if field.required %}required{% endif %}>
+</div>

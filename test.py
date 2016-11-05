@@ -3,7 +3,9 @@ from sendinblue.client import Client
 
 api = Client('xjTqIa43VmQ0GnyX')
 
-data = api.get_campaigns_v2()
+data = api.get_forms()
+# data = api.get('scenarios/getForms')
+# data = api.get_list(6)
 
 print(json.dumps(data))
 # print('\n')

@@ -1,0 +1,14 @@
+{% load wagtailcore_tags %}
+<form class="sendinblue-form" action="{% url 'sendinblue-form' pk=form.pk %}" method="POST">
+   {% csrf_token %}
+   {{ form.definition }}
+   {% if form.submit_layout == 'center' %}<div class="text-center">{% endif %}
+   <button type="submit" class="btn btn-lg btn-{{value.submit_variant}}{% if form.submit_layout == 'full' %} btn-block{% endif %}">
+      {{form.submit_text}}
+   </button>
+   {% if form.submit_layout == 'center' %}</div>{% endif %}
+</form>
+<div class="sendinblue-form-thankyou hidden">
+   <h3>{{ form.thankyou_title }}</h3>
+   {{ form.thankyou_text|richtext }}
+</div>

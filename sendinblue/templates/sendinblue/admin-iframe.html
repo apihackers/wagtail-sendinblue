@@ -1,0 +1,26 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailadmin_tags i18n staticfiles gravatar sendinblue %}
+
+{% block bodyclass %}sendinblue{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'sendinblue/css/admin.css' %}">
+{% endblock %}
+
+{% block titletag %}SendInBlue - {{ title }}{% endblock %}
+
+{% block content %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {#% include 'wagtailadmin/shared/header.html' with title='SendInBlue' icon='fa-envelope' merged=True %#}
+    <section class="iframe">
+        {% if url %}
+        <iframe src="{{url}}" width="100%" height="100%" scrolling="yes"></iframe>
+        {% else %}
+        <iframe
+            src="https://my.sendinblue.com/{{name}}/access_token/{{access_token}}/lang/{{LANGUAGE_CODE}}"
+            width="100%" height="100%" scrolling="yes">
+        </iframe>
+        {% endif %}
+    </section>
+{% endblock %}

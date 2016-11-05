@@ -17,7 +17,7 @@ AUTOMATION_API_URL = 'https://in-automate.sendinblue.com/p'
 
 
 class ApiKey(AuthBase):
-    '''Attaches SendInBlueAPI Key Authentication'''
+    '''Attaches SendInBlue API Key Authentication'''
     def __init__(self, apikey):
         self.apikey = apikey
 
@@ -49,12 +49,12 @@ class Client(object):
         response = requests.get(self._url(path), params=params or kwargs, **self._kwargs(timeout))
         return response.json()
 
-    def post(self, path, data, timeout=None, **kwargs):
+    def post(self, path, data=None, timeout=None, **kwargs):
         '''POST operation helper'''
         response = requests.post(self._url(path), json=data or kwargs, **self._kwargs(timeout))
         return response.json()
 
-    def put(self, path, data, timeout=None, **kwargs):
+    def put(self, path, data=None, timeout=None, **kwargs):
         '''PUT operation helper'''
         response = requests.put(self._url(path), json=data or kwargs, **self._kwargs(timeout))
         return response.json()
@@ -1110,3 +1110,51 @@ class Client(object):
         :param in id: Id of sender to be deleted
         '''
         return self.delete('advanced/{id}'.format(id=id))
+
+
+class AutomationClient(object):
+    '''A SendInBlue Automation API Client'''
+    def __init__(self, apikey, timeout=None):
+        self.apikey = apikey
+        self.timeout = timeout
+
+    def execute(self, name, **data):
+        data['key'] = self.apikey
+        data['sib_type'] = name
+        response = requests.get(AUTOMATION_API_URL, params=data,
+                                timeout=self.timeout or DEFAULT_TIMEOUT)
+        return response.json()
+
+    def identify(self, email, **data):
+        '''
+        See: https://apidocs.sendinblue.com/identify-user/
+        https://in-automate.sendinblue.com/p?
+            name=James%20Clear&
+            email_id=james@example.com&
+            id=10001&
+            sib_type=identify&key=your_key&session_id=f33234de-cc75-4f28-9e9a-afb0014a5daf'
+        '''
+        data['email_id'] = email
+        return self.execute('identify', **data)
+
+    def track(self, name, **data):
+        '''
+        See: https://apidocs.sendinblue.com/track-events/
+        '''
+        data['sib_name'] = name
+        return self.execute('track', **data)
+
+    def link(self, name, url, **data):
+        '''
+        See: https://apidocs.sendinblue.com/track-links/
+        '''
+        data['name'] = name
+        data['href'] = url
+        return self.execute('trackLink', **data)
+
+    def page(self, name, **data):
+        '''
+        See: https://apidocs.sendinblue.com/track-pages/
+        '''
+        data['name'] = name
+        return self.execute('page', **data)
