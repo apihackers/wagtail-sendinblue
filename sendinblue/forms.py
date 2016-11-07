@@ -52,8 +52,30 @@ class TextFieldBlock(blocks.StructBlock):
         return context
 
 
+class TextAreaBlock(blocks.StructBlock):
+    label = blocks.CharBlock(label=_('Label'), max_length=255, required=False,
+                             help_text=_('The text displayed aside the field'))
+    required = blocks.BooleanBlock(label=_('Required'), default=True, required=False)
+    rows = blocks.IntegerBlock(label=_('Rows'), default=3, required=True)
+    attribute = blocks.CharBlock(label=_('Attribute'), max_length=255, required=True, default='message',
+                             help_text=_('The attribute used for transactional template'))
+    placeholder = blocks.CharBlock(label=_('Placeholder'), max_length=255, required=False,
+                                   help_text=_('The text displayed inside the field when empty'))
+
+    class Meta:
+        label = _('SendInBlue textarea')
+        icon = 'placeholder'
+        template = 'sendinblue/blocks/textarea.html'
+
+    def get_context(self, value):
+        context = super().get_context(value)
+        context['textarea'] = value
+        return context
+
+
 class FormBuilder(blocks.StreamBlock):
     text_field = TextFieldBlock()
+    textarea = TextAreaBlock()
     text = blocks.RichTextBlock()
     image = ImageChooserBlock()
     html = blocks.RawHTMLBlock()
@@ -66,5 +88,8 @@ class SendInBlueDynamicForm(forms.Form):
         super().__init__(data, **kwargs)
         for block in builder:
             if block.block_type == 'text_field':
+                field = dict((k, v.value) for k, v in block.value.bound_blocks.items())
+                self.fields[field['attribute']] = forms.CharField(required=field['required'])
+            elif block.block_type == 'textarea':
                 field = dict((k, v.value) for k, v in block.value.bound_blocks.items())
                 self.fields[field['attribute']] = forms.CharField(required=field['required'])

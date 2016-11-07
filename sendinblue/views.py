@@ -130,6 +130,11 @@ def submit_form(request, pk):
 
             api.create_update_user(email, data, listid=sib_form.target_list)
 
+            if sib_form.confirm_template:
+                api.send_transactional_template(sib_form.confirm_template, email, attr=data)
+            if sib_form.notify_template and settings.notify_email:
+                api.send_transactional_template(sib_form.notify_template, settings.notify_email, attr=data)
+
             if settings.automation:
                 session_id = request.session.session_key
                 data['session_id'] = session_id

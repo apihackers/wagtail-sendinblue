@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-05 13:05+0100\n"
-"PO-Revision-Date: 2016-11-05 13:06+0100\n"
+"POT-Creation-Date: 2016-11-07 14:58+0100\n"
+"PO-Revision-Date: 2016-11-07 16:02+0100\n"
 "Last-Translator: Axel Haustant <noirbizarre@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -22,23 +22,23 @@ msgstr ""
 msgid "Attributes"
 msgstr "Attributs"
 
-#: forms.py:36
+#: forms.py:36 forms.py:56
 msgid "Label"
 msgstr "Libellé"
 
-#: forms.py:37
+#: forms.py:37 forms.py:57
 msgid "The text displayed aside the field"
 msgstr "Le texte affiché à côté du champ"
 
-#: forms.py:38
+#: forms.py:38 forms.py:58
 msgid "Required"
 msgstr "Requis"
 
-#: forms.py:41
+#: forms.py:41 forms.py:62
 msgid "Placeholder"
 msgstr "Emplacement"
 
-#: forms.py:42
+#: forms.py:42 forms.py:63
 msgid "The text displayed inside the field when empty"
 msgstr "Le texte afficher dans le champ lorsqu'il est vide"
 
@@ -46,7 +46,23 @@ msgstr "Le texte afficher dans le champ lorsqu'il est vide"
 msgid "SendInBlue field"
 msgstr "Champ SendInBlue"
 
-#: models.py:24
+#: forms.py:59
+msgid "Rows"
+msgstr "Lignes"
+
+#: forms.py:60
+msgid "Attribute"
+msgstr "Attribut"
+
+#: forms.py:61
+msgid "The attribute used for transactional template"
+msgstr "L'attribut utilisé pour le template transactionnel"
+
+#: forms.py:66
+msgid "SendInBlue textarea"
+msgstr "Zone de texte SendInBlue"
+
+#: models.py:25
 #, python-format
 msgid ""
 "You can retrieve your SendInBlue API Key <a target=\"_blank\" href=\"%s"
@@ -55,7 +71,7 @@ msgstr ""
 "Vous pouvez retrouver votre clé d'API SendInBlue <a target=\"_blank\" href="
 "\"%s\">ici</a>"
 
-#: models.py:26
+#: models.py:27
 #, python-format
 msgid ""
 "You can retrieve your SendInBlue Automation API Key <a target=\"_blank\" "
@@ -64,184 +80,217 @@ msgstr ""
 "Vous pouvez retrouver votre clé d'API Automation SendInBlue <a target="
 "\"_blank\" href=\"%s\">ici</a>"
 
-#: models.py:37
+#: models.py:38
 msgid "API Key"
 msgstr "Clé d'API"
 
-#: models.py:40
+#: models.py:41
 msgid "Automation API Key"
 msgstr "Clé d'API Automation"
 
-#: models.py:43
+#: models.py:44
 msgid "Enable user tracking"
 msgstr "Activer le suivi des utilisateurs"
 
-#: models.py:44
+#: models.py:45
 msgid "Identify users to SendInBlue to provide deeper automation"
 msgstr ""
 "Identifier les utilisateurs auprès de SendInBlue pour fournir des capacités "
 "d'automatisation plus avancées"
 
-#: models.py:51 templates/sendinblue/widgets/automation.html:6
+#: models.py:47
+msgid "Notification email"
+msgstr "Email de notification"
+
+#: models.py:48
+msgid "Notification mail will be sent to this email"
+msgstr "Les mails de notification seront envoyés à cette adresse"
+
+#: models.py:55 templates/sendinblue/widgets/automation.html:6
 #: wagtail_hooks.py:25 wagtail_hooks.py:68
 msgid "Automation"
 msgstr "Automation"
 
-#: models.py:58 models.py:63
+#: models.py:58
+msgid "Notifications"
+msgstr "Notifications"
+
+#: models.py:65 models.py:70
 msgid "Default"
 msgstr "Défaut"
 
-#: models.py:59
+#: models.py:66
 msgid "Centered"
 msgstr "Centré"
 
-#: models.py:60
+#: models.py:67
 msgid "Full width"
 msgstr "Pleine largeur"
 
-#: models.py:64
+#: models.py:71
 msgid "Primary"
 msgstr "Primaire"
 
-#: models.py:65
+#: models.py:72
 msgid "Success"
 msgstr "Succès"
 
-#: models.py:66
+#: models.py:73
 msgid "Info"
 msgstr "Info"
 
-#: models.py:67
+#: models.py:74
 msgid "Warning"
 msgstr "Avertissement"
 
-#: models.py:68
+#: models.py:75
 msgid "Danger"
 msgstr "Danger"
 
-#: models.py:69
+#: models.py:76
 msgid "Link"
 msgstr "Lien"
 
-#: models.py:74
+#: models.py:81
 msgid "Name"
 msgstr "Nom"
 
-#: models.py:76
+#: models.py:83
 msgid "Button text"
 msgstr "Texte du bouton"
 
-#: models.py:77
+#: models.py:84
 msgid "Submit"
 msgstr "Soumettre"
 
-#: models.py:78
+#: models.py:85
 msgid "The submit button text"
 msgstr "Le texte du bouton de soumission"
 
-#: models.py:79
+#: models.py:86
 msgid "Button layout"
 msgstr "Forme du bouton"
 
-#: models.py:81
+#: models.py:88
 msgid "The submit button layout"
 msgstr "Le forme du bouton de soumission"
 
-#: models.py:82
+#: models.py:89
 msgid "Button variant"
 msgstr "Variante du bouton"
 
-#: models.py:84
+#: models.py:91
 msgid "The submit button tint"
 msgstr "La teinte de bouton de soumission"
 
-#: models.py:85
+#: models.py:92
 msgid "Target list"
 msgstr "Liste cible"
 
-#: models.py:86
+#: models.py:93
 msgid "Add the contact to the given list on form submission"
 msgstr "Ajouter le contact à cette liste à la soumission du formulaire"
 
-#: models.py:87
+#: models.py:94
 msgid "Send event"
 msgstr "Envoyer un événement"
 
-#: models.py:88
+#: models.py:95
 msgid "Send a custom event on form submission (requires automation)"
 msgstr ""
 "Envoyer un événement personnalisé à la soumission du formulaire (requiert "
 "l'Automation)"
 
-#: models.py:89
+#: models.py:96
 msgid "Introduction title"
 msgstr "Titre de l'introduction"
 
-#: models.py:90
+#: models.py:97
 msgid "Title to use for the introduction"
 msgstr "Le titre à utiliser pour l'introduction"
 
-#: models.py:91
+#: models.py:98
 msgid "Introduction subtitle"
 msgstr "Sous-titre de l'introduction"
 
-#: models.py:92
+#: models.py:99
 msgid "A subtitle to use for the introduction"
 msgstr "Un sous-titre à utiliser pour l'introduction"
 
-#: models.py:93
+#: models.py:100
 msgid "Introduction text"
 msgstr "Texte d'introduction"
 
-#: models.py:94
+#: models.py:101
 msgid "The text to use for the introduction"
 msgstr "Le texte à utiliser pour l'introduction"
 
-#: models.py:95
+#: models.py:102
 msgid "Thank you title"
 msgstr "Titre des remerciements"
 
-#: models.py:95
+#: models.py:102
 msgid "Thank you"
 msgstr "Remerciements"
 
-#: models.py:96
+#: models.py:103
 msgid "Title text to use for the \"thank you\" page"
 msgstr "Le titre de la page de remerciements"
 
-#: models.py:97
+#: models.py:104
 msgid "Thank you text"
 msgstr "Texte de remerciement"
 
-#: models.py:98
+#: models.py:105
 msgid "The text to use for the \"thank you\" page"
 msgstr "Le texte à utiliser pour les remerciements"
 
+#: models.py:106
+msgid "Notify template"
+msgstr "Template de notification"
+
 #: models.py:107
+msgid ""
+"Send a notification mail using this template. The notify mail should be "
+"defined in SendInBlue settings"
+msgstr ""
+"Envoie un mail de notification en utilisant ce template. Le mail de "
+"notification doit être défini dans les paramètres SendInBlue"
+
+#: models.py:109
+msgid "Confirmation template"
+msgstr "Template de confirmation"
+
+#: models.py:110
+msgid "Send a confirmation mail to the user using this template"
+msgstr ""
+"Envoie un mail de confirmation à l'utilisateur en utilisant ce template"
+
+#: models.py:119
 msgid "Submit button"
 msgstr "Bouton de soumission"
 
-#: models.py:111
+#: models.py:125
 msgid "On submit"
 msgstr "À la soumissions"
 
-#: models.py:116
+#: models.py:130
 msgid "Introduction"
 msgstr "Introduction"
 
-#: models.py:120
+#: models.py:134
 msgid "Thank you page"
 msgstr "Page de remerciement"
 
-#: models.py:127
+#: models.py:141
 msgid "SendInBlue Form"
 msgstr "Formulaire SendInBlue"
 
-#: models.py:128
+#: models.py:142
 msgid "SendInBlue Forms"
 msgstr "Formulaires SendInBlue"
 
-#: models.py:136
+#: models.py:150
 msgid "SendInBlue form"
 msgstr "Formulaire SendInBlue"
 
@@ -374,6 +423,17 @@ msgstr "Paramètres"
 #: wagtail_hooks.py:35
 msgid "Forms"
 msgstr "Formulaires"
+
+#, fuzzy
+#~| msgid "Attributes"
+#~ msgid "attribute"
+#~ msgstr "Attributs"
+
+#~ msgid "Send a notification mail to a given list"
+#~ msgstr "Envoie un mail de notification une liste donnée"
+
+#~ msgid "Mail template"
+#~ msgstr "Template de mail"
 
 #~ msgid "name"
 #~ msgstr "nom"

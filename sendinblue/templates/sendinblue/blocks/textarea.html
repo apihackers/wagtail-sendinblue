@@ -1,0 +1,10 @@
+<div class="form-group">
+    {% if textarea.label %}
+    <label for="{{ textarea.attribute }}" {% if textarea.required %}class="required"{% endif %}>
+        {{textarea.label}}
+    </label>
+    {% endif %}
+    <textarea class="form-control input-lg" rows="{{ textarea.rows }}" name="{{ textarea.attribute }}"
+        placeholder="{{ textarea.placeholder|default:textarea.label }}"
+        {% if textarea.required %}required{% endif %}></textarea>
+</div>

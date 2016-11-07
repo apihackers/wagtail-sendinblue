@@ -281,9 +281,9 @@ class Client(object):
         :param int page_limit: This should be a valid number between 1-500 [Optional]
         '''
         url = 'campaign/detailsv2/'
-        if not (type is None and status is None and page is None and page_limit is None):
+        if not (type is None or status is None or page is None or page_limit is None):
             url += 'type/{type}/status/{status}/page/{page}/page_limit/{page_limit}/'
-            url = url.format(locals())
+            url = url.format(**locals())
         return self.get(url)
 
     def get_campaign_v2(self, id):
@@ -995,6 +995,8 @@ class Client(object):
             Example: ``{'Content-Type': 'text/html; charset=iso-8859-1'}``.
             You can use commas to separate multiple headers
         '''
+        if isinstance(to, (list,tuple)):
+            to = '|'.join(to)
         return self.put('template/{id}'.format(id=id), to=to, cc=cc, bcc=bcc, attr=attr,
                         attachment_url=attachment_url, attachment=attachment, headers=headers)
 

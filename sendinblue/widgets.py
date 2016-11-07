@@ -9,13 +9,16 @@ class ApiSelect(Select):
     def __init__(self, attrs=None, **kwargs):
         super(ApiSelect, self).__init__(attrs, ())
         self.choices = lazy(self._get_choices, tuple)()
+        self._cached_choices = None
 
     def _get_choices(self):
-        from .models import SendinBlueSettings
-        site = Site.objects.first()
-        settings = SendinBlueSettings.for_site(site)
-        api = Client(settings.apikey)
-        return self.get_choices(api)
+        if self._cached_choices is None:
+            from .models import SendinBlueSettings
+            site = Site.objects.first()
+            settings = SendinBlueSettings.for_site(site)
+            api = Client(settings.apikey)
+            self._cached_choices = self.get_choices(api)
+        return self._cached_choices
 
     def get_choices(self, api):
         raise NotImplementedError
@@ -35,5 +38,15 @@ class ListSelect(ApiSelect):
         choices = [
             (l['id'], l['name'])
             for l in data['data']['lists']
+        ]
+        return choices if self.is_required else [(None, '')] + choices
+
+
+class TemplateSelect(ApiSelect):
+    def get_choices(self, api):
+        data = api.get_campaigns_v2('template', 'draft', 1, 500)
+        choices = [
+            (l['id'], l['campaign_name'])
+            for l in data['data']['campaign_records']
         ]
         return choices if self.is_required else [(None, '')] + choices

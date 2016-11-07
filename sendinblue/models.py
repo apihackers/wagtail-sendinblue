@@ -1,6 +1,7 @@
 import re
 
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
@@ -17,7 +18,7 @@ from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, InlinePanel, FieldRowPanel, StreamFieldPanel
 
 from .utils import mark_safe_lazy
-from .widgets import ListSelect
+from .widgets import ListSelect, TemplateSelect
 from .forms import FormBuilder
 
 
@@ -43,12 +44,18 @@ class SendinBlueSettings(BaseSetting):
     track_users = models.BooleanField(_('Enable user tracking'), default=True,
                                       help_text=_('Identify users to SendInBlue to provide deeper automation'))
 
+    notify_email = models.EmailField(_('Notification email'), max_length=255, null=True, blank=True,
+                                     help_text=_('Notification mail will be sent to this email'))
+
     panels = [
         FieldPanel('apikey'),
         MultiFieldPanel([
             FieldPanel('automation'),
             FieldPanel('track_users'),
         ], heading=_('Automation')),
+        MultiFieldPanel([
+            FieldPanel('notify_email'),
+        ], heading=_('Notifications')),
     ]
 
 
@@ -96,6 +103,11 @@ class SendInBlueForm(models.Model):
                                       help_text=_('Title text to use for the "thank you" page'))
     thankyou_text = RichTextField(_('Thank you text'), blank=True,
                                   help_text=_('The text to use for the "thank you" page'))
+    notify_template = models.IntegerField(_('Notify template'), null=True, blank=True,
+                                          help_text=_('Send a notification mail using this template. '
+                                                      'The notify mail should be defined in SendInBlue settings'))
+    confirm_template = models.IntegerField(_('Confirmation template'), null=True, blank=True,
+                                           help_text=_('Send a confirmation mail to the user using this template'))
 
     panels = [
         FieldPanel('name', classname="full"),
@@ -107,6 +119,8 @@ class SendInBlueForm(models.Model):
         ], heading=_('Submit button'), classname='collapsible'),
         MultiFieldPanel([
             FieldPanel('target_list', widget=ListSelect),
+            FieldPanel('confirm_template', widget=TemplateSelect),
+            FieldPanel('notify_template', widget=TemplateSelect),
             FieldPanel('send_event'),
         ], heading=_('On submit'), classname='collapsible'),
         MultiFieldPanel([
