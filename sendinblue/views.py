@@ -130,10 +130,13 @@ def submit_form(request, pk):
 
             api.create_update_user(email, data, listid=sib_form.target_list)
 
+            data_formated = dict((k, v.replace('\n', '<br/>')) for k, v in data.items())
+            data_formated.update(EMAIL=email)
+
             if sib_form.confirm_template:
-                api.send_transactional_template(sib_form.confirm_template, email, attr=data)
+                api.send_transactional_template(sib_form.confirm_template, email, attr=data_formated)
             if sib_form.notify_template and settings.notify_email:
-                api.send_transactional_template(sib_form.notify_template, settings.notify_email, attr=data)
+                api.send_transactional_template(sib_form.notify_template, settings.notify_email, attr=data_formated)
 
             if settings.automation:
                 session_id = request.session.session_key
