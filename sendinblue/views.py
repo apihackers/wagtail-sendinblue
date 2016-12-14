@@ -128,7 +128,10 @@ def submit_form(request, pk):
             settings = SendinBlueSettings.for_site(request.site)
             api = Client(settings.apikey)
 
-            api.create_update_user(email, data, listid=sib_form.target_list)
+            api.create_update_user(email, data)
+
+            if sib_form.target_list:
+                api.add_users_list(sib_form.target_list, [email])
 
             data_formated = dict((k, v.replace('\n', '<br/>')) for k, v in data.items())
             data_formated.update(EMAIL=email)
